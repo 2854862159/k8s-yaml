@@ -1,0 +1,17 @@
+# ------------------- App Ingress ------------------- #
+#apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nacos-headless-ingress
+  namespace: nacos
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: nacos-web.nacos-demo.com
+    http:
+      paths:
+      - backend:
+          serviceName: nacos-headless
+          servicePort: 8848
